@@ -104,30 +104,75 @@ def Soma001():
     print('║\033[1;33m'+' '*13+'[ 2 ] Dezenas'+' '*39+'\033[m║')
     print('║\033[1;33m'+' '*13+'[ 3 ] Centenas'+' '*38+'\033[m║')
 
+
     escolha = int(input('║'+' '*13+'\033[1;43mSua escolha:'+'\033[m '*40 + '║\n' + '║' + ' '*13))
     print('╠'+'═'*65+'╣')
 
-    if escolha == 1:
-        p1 = 1
-        p2 = 10
-    elif escolha == 2:
-        p1 = 10
-        p2 = 100
-    elif escolha == 3:
-        p1 = 100
-        p2 = 1000
-    num1 = randint(p1, p2)
-    num2 = randint(p1, p2)
-    print('║\033[1;34m'+' '*13+'Questão {}.\033[m Calcule a soma de {} + {}'.format(cont, num1, num2)+' '*18+'║')
-    soma = num1 + num2
-    resp = float(input('║'+' '*13+'\033[34mResposta:'+'\033[m '*43 + '║\n' + '║' + ' '*13))
+    while repete != 'N':
 
-    while resp != soma:
-        if resp != soma:
-            print('INCORRETO! Tente novamente.')
-            resp = float(input('Resposta: '))
+        p1 = 0
+        q1 = 0
+        ps1 = 0
+        ps2 = 0
 
-    print('CERTO! PARÁBENS!!!')
+        if pontos <= 9:
+            ps1 = 29
+            ps2 = 25
+        elif pontos >= 10 and pontos <= 99:
+            ps1 = 28
+            ps2 = 24
+        elif pontos >= 100 and pontos <= 999:
+            ps1 = 27
+            ps2 = 23
+
+        if escolha == 1:
+            p1 = 1
+            p2 = 10
+        elif escolha == 2:
+            p1 = 10
+            p2 = 100
+        elif escolha == 3:
+            p1 = 100
+            p2 = 1000
+        num1 = randint(p1, p2)
+        num2 = randint(p1, p2)
+        if escolha == 1:
+            if num1 <= 9 and num2 <= 9:
+                q1 = 18
+            elif num1 >= 10 and num2 >= 10:
+                q1 = 16
+            else:
+                q1 = 17
+        elif escolha == 2:
+            if (num1 >= 10 and num1 <= 99) and (num2 >= 10 and num2 <= 99):
+                q1 = 16
+            else:
+                q1 = 15
+        elif escolha == 3:
+            if (num1 >= 100 and num1 <= 999) and (num2 >= 100 and num2 <= 999):
+                q1 = 14
+            else:
+                q1 = 13
+
+        print('║\033[1;34m'+' '*13+'Questão {}.\033[m Calcule a soma de {} + {}'.format(cont, num1, num2)+' '*q1+'║')
+        soma = num1 + num2
+        resp = float(input('║'+' '*13+'\033[34mResposta:'+'\033[m '*43 + '║\n' + '║' + ' '*13))
+
+        while resp != soma:
+
+            if resp != soma:
+                print('║'+' '*13+'\033[1;41mINCORRETO! Tente novamente.'+'\033[m '*25  + '║' + ' '*3)
+                pontos -= 1
+                print('║' + ' ' * 3 + '\033[31mVocê NÃO pontuou, agora tem {} pontos.\033[m'.format(pontos) + ' ' * ps2 + '║')
+                resp = float(input('║'+' '*13+'\033[34mResposta:'+'\033[m '*43 + '║\n' + '║' + ' '*13))
+
+        print('║'+' '*13+'\033[1;42mCERTO! PARÁBENS!!!'+'\033[m '*34 + '║\n' + '║' + ' '*3)
+        pontos += 3
+        print('║' + ' ' * 3 + '\033[32mVocê pontuou, agora tem {} pontos.\033[m'.format(pontos) + ' ' * ps1 + '║')
+        cont += 1
+        repete = str(input('║' + ' ' * 3 + 'Proxima Questão? [ S ] ou [ N ]' + ' ' * 31 + '║\n' + '║' + ' ' * 5)).upper()[
+                 0:1]
+    print('╚' + '═' * 65 + '╝')
 
 def Subtracao001():
 
